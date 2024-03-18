@@ -6,7 +6,8 @@ import { FaHome } from "react-icons/fa";
 // import MyClock from './01_1/MyClock';
 // import HelloCss from './02/HelloCss';
 // import MyDiv1 from './03_1/MyDiv1';
-import MyListMain from './04/MyListMain';
+// import MyListMain from './04/MyListMain';
+import BoxOfficeTb from './05/BoxOfficeTb';
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
       <main className='grow flex flex-col 
                             justify-center items-center 
                       '>
-          <MyListMain />
+          <BoxOfficeTb />
       </main>
       <footer className='flex justify-center items-center
                           h-20 bg-slate-800
