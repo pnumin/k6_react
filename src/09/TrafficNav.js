@@ -6,15 +6,17 @@ export default function TrafficNav({title, category, sel, setSel}) {
   
   const bts = category.map(item => 
       <TailButton caption = {item}
-                  color = "blue"
+                  color = {item === sel ? "red" :"blue"}
+                  key = {item}
                   handleClick ={() => handleBtClick(item)} />
   );  
   
   return (
-    <div>
-      <div>
+    <div className='w-11/12 flex
+                    justify-between items-center'>
+      <h1 className='text-xl font-bold'>
         교통사고 {title}
-      </div>
+      </h1>
       <div>
         {bts}
       </div>

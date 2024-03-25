@@ -11,7 +11,9 @@ import { FaHome } from "react-icons/fa";
 // import Lotto from './06/Lotto'; 
 // import FoodMain from './07/FoodMain';
 // import MyClock from './08/MyClock';
-import TrafficMain from './09/TrafficMain';
+// import TrafficMain from './09/TrafficMain';
+// import RefVal from './10/RefVal';
+import RefInput from './10/RefInput';
 
 function App() {
 
@@ -33,7 +35,7 @@ function App() {
       <main className='grow flex flex-col 
                             justify-center items-center 
                       '>
-          <TrafficMain />
+          <RefInput />
       </main>
       <footer className='flex justify-center items-center
                           h-20 bg-slate-800
