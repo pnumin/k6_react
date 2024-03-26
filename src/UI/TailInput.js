@@ -1,7 +1,8 @@
-export default function TailInput({type,inputRef, ph}) {
+export default function TailInput({type,inputRef, ph, handleChange}) {
   return (
     <input type={type}  
            ref={inputRef}
+           onChange={handleChange} 
            className="bg-gray-50 border
                        border-gray-300
                        text-gray-900 

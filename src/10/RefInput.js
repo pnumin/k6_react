@@ -10,6 +10,7 @@ export default function RefInput() {
     if (inputRef.current.value === '') {
       alert('값을 입력하세요.') ;
       inputRef.current.focus() ;
+      return ;
     }
     setBts([inputRef.current.value , ...bts]) ;
   }
@@ -27,7 +28,9 @@ export default function RefInput() {
   } , [bts]);
 
   const handleRemove = () => {
-
+    setBts([]) ;
+    inputRef.current.value = '' ;
+    inputRef.current.focus() ;
   }
   return (
     <div className="w-11/12 flex flex-col 
@@ -35,16 +38,9 @@ export default function RefInput() {
       <div className="w-full flex
                       justify-center items-center">
         <div className="w-1/2 flex justify-center items-center">
-        <input type="text" 
-           ref={inputRef}
-           className="bg-gray-50 border
-                       border-gray-300
-                       text-gray-900 
-                       text-sm rounded-lg
-                       focus:ring-blue-500
-                       focus:border-blue-500 
-                       block w-full p-2.5" 
-                       placeholder="값입력"  />
+          <TailInput type = "text" 
+                   inputRef ={inputRef} 
+                   ph ="값입력" />
         </div>
         <div className="w-1/2 flex justify-center items-center">
           <TailButton caption="등록"
