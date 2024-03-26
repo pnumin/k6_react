@@ -1,23 +1,56 @@
 import TailButton from "../UI/TailButton" ;
 import TailInput from "../UI/TailInput"; 
-import { useRef } from "react";
+import GalleryCard from "./GalleryCard";
+import { useRef, useState, useEffect } from "react";
 export default function GalleryMain() {
   const keyword = useRef() ; 
+  const [tdata , setTdata] = useState() ;
+  const [tags , setTags] = useState() ;
 
-  const handleKeyword = () => { 
+  useEffect(() => {
+    if (!tdata) return ;
+
+    let tm = tdata.map((item) => 
+      <GalleryCard key = {item.galContentId}
+                   imgUrl = {item.galWebImageUrl.replace('http://', 'https://')} 
+                   title = {item.galTitle}
+                   ptitle = {item.galPhotographyLocation}
+                   ktag = {item.galSearchKeyword} />
+    ) ;
+
+    setTags(tm) ;
+  }, [tdata]);
+
+  const getData = (w) => { 
+    console.log(w) ;
+    let url = `https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?` ;
+    url = url + `serviceKey=${process.env.REACT_APP_APIKEY}` ;
+    url = url +  `&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A`;
+    url = url + `&keyword=${w}&_type=json` ;
+    
+    fetch(url)
+    .then(resp => resp.json())
+    .then(data => setTdata(data.response.body.items.item))
+    .catch(err => console.log(err)) ;
   }
 
   const handleFetch = () => {
-    let w = encodeURI(keyword.current.value) ;
-    console.log(w) ;
+    if (keyword.current.value === '') {
+      alert('키워드를 입력하세요.');
+      keyword.current.focus() ;
+      return;
+    }
 
-    /*
-    https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=%ED%83%9C%EC%A2%85%EB%8C%80&_type=json
-    */
+    handleClear();
+    let w = encodeURI(keyword.current.value) ;
+    getData(w) ;
+
   }
 
   const handleClear = () => {
-    console.log(keyword.current.value) ;
+    setTdata('') ;
+    setTags('') ; 
+    keyword.current.focus() ;
   }
 
   return (
@@ -43,6 +76,11 @@ export default function GalleryMain() {
                         color = "blue"
                         handleClick = {handleClear}/>
         </div>
+      </div>
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+                      p-2
+                      gap-2">
+        {tags}
       </div>
     </div>
   )
