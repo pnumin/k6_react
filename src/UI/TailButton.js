@@ -13,6 +13,7 @@ export default function TailButton({caption, color, handleClick}) {
   }
 
   const bColor = `px-4 py-2 m-2 rounded-md
+                  w-full
                   ${colorObj[color]}
                   ${hoverObj[color]} text-white`;
   return (

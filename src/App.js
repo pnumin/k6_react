@@ -8,13 +8,15 @@ import { FaHome } from "react-icons/fa";
 // import MyDiv1 from './03_1/MyDiv1';
 // import MyListMain from './04/MyListMain';
 // import BoxOfficeTb from './05_1/BoxOfficeTb';
-import BoxOffice from './05/BoxOffice';
+// import BoxOffice from './05/BoxOffice';
 // import Lotto from './06/Lotto'; 
 // import FoodMain from './07/FoodMain';
 // import MyClock from './08/MyClock';
 // import TrafficMain from './09/TrafficMain';
 // import RefVal from './10/RefVal';
 // import RefInput from './10/RefInput';
+// import GalleryCard from './11/GalleryCard';
+import GalleryMain from './11/GalleryMain';
 
 function App() {
 
@@ -36,7 +38,7 @@ function App() {
       <main className='grow flex flex-col 
                             justify-center items-center 
                       '>
-          <BoxOffice />
+          <GalleryMain />
       </main>
       <footer className='flex justify-center items-center
                           h-20 bg-slate-800
