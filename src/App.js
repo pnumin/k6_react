@@ -16,7 +16,8 @@ import { FaHome } from "react-icons/fa";
 // import RefVal from './10/RefVal';
 // import RefInput from './10/RefInput';
 // import GalleryCard from './11/GalleryCard';
-import GalleryMain from './11/GalleryMain';
+// import GalleryMain from './11/GalleryMain';
+import Festival from './12/Festival';
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
       <main className='grow flex flex-col 
                             justify-center items-center 
                       '>
-          <GalleryMain />
+          <Festival />
       </main>
       <footer className='flex justify-center items-center
                           h-20 bg-slate-800
