@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import GalleryCard from "../11/GalleryCard";
+
 export default function Festival() {
   //부산축제 전체 데이터
   const [tdata, setTdata] = useState();
   const [guname, setGuname] = useState();
   const [opTags, setOpTags] = useState();
+  const [cardTags, setCardTags] = useState();
 
   //select 값
   const selRef = useRef();
@@ -11,6 +14,16 @@ export default function Festival() {
   //select 선택
   const handleSelGu = () => {
     console.log(selRef.current.value)
+    let tm = tdata.filter(item => item.GUGUN_NM === selRef.current.value)
+                  .map(item => 
+                    <GalleryCard key = {item.UC_SEQ}
+                                  imgUrl = {item.MAIN_IMG_THUMB} 
+                                  title = {item.PLACE}
+                                  ptitle = {item.TITLE}
+                                  ktag = {item.TRFC_INFO} />
+                  )
+    setCardTags(tm) ;               
+    console.log(tm)
   }
 
   //실제 fetch
@@ -75,6 +88,11 @@ export default function Festival() {
           {opTags}
         </select>
       </form>
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+                      p-2
+                      gap-2">
+          {cardTags}
+      </div>
     </div>
   )
 }
