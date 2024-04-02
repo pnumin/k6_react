@@ -20,7 +20,9 @@ import MyClock from './08/MyClock';
 import GalleryMain from './11/GalleryMain';
 import Festival from './12/Festival';
 // import RouteMain from './13/RouteMain';
-import Frcst from './14/Frcst';
+import Frcst from './14/Frcst'; 
+import UltraSrtFcst from './14/UltraSrtFcst';
+import VilageFcst from './14/VilageFcst';
 
 function App() {
 
@@ -79,7 +81,9 @@ function App() {
             <Route path='/food' element={<FoodMain />} />
             <Route path='/gallery' element={<GalleryMain />} />
             <Route path='/festival' element={<Festival />} />
-            <Route path='/frcst' element={<Frcst />} />
+            <Route path='/frcst' element={<Frcst />} /> 
+            <Route path='/ultra/:dt/:area/:x/:y' element={<UltraSrtFcst />} /> 
+            <Route path='/vilage/:dt/:area/:x/:y' element={<VilageFcst />} />
           </Routes>
         </main>
 
