@@ -1,16 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom" ; 
 import { useState, useEffect,useRef} from "react";
 import TailSelect from "../UI/TailSelect";
 import getcode from "./getcode.json" ;
 
-export default function UltraSrtFcst() {
-  const dt = useParams().dt;
-  const area = useParams().area;
-  const x = useParams().x;
-  const y = useParams().y;
-  const gubun = '초단기예보';
+export default function FrcstList() {
+  const [queryParams] = useSearchParams() ;
+  const dt = queryParams.get('dt');
+  const area =  queryParams.get('area');
+  const x =  queryParams.get('x');
+  const y =  queryParams.get('y');
+  const gubun =  queryParams.get('gubun');
 
-  
   //select 박스 옵션
   const ops = getcode.filter(item => item["예보구분"] === gubun ) 
                       .map(item => `${item["항목명"]} (${item["항목값"]})`)
@@ -50,10 +50,19 @@ export default function UltraSrtFcst() {
 
   //데이터가져오기
   useEffect(() => {
-    let url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?`;
-    url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
-    url = url + `&pageNo=1&numOfRows=1000&dataType=json&base_date=${dt}&base_time=0630&nx=${x}&ny=${y}`;
-
+    let url ;
+    
+    if (gubun === '초단기예보') {
+      url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?`;
+      url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
+      url = url + `&pageNo=1&numOfRows=1000&dataType=json&base_date=${dt}&base_time=0630&nx=${x}&ny=${y}`;
+    }
+    else  {
+      url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?`;
+      url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
+      url = url + `&pageNo=1&numOfRows=1000&dataType=json&base_date=${dt}&base_time=0500&nx=${x}&ny=${y}`;
+    }
+    
     // console.log(url)
     //fetch 함수
     getData(url);
